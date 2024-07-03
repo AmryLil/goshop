@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.optionstyle {
+  @apply p-2 text-slate-700 mb-2;
+}
+
+.custom-bg {
+  background-image: url("../public/img/thumbnail.jpg");
+}
+
+@keyframes move-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-move-right {
+  animation: move-right 10s infinite;
+}
+
+.animate-move-left {
+  animation: move-left 10s infinite;
+}
