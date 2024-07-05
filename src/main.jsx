@@ -14,6 +14,8 @@ import Header from "./components/Navbar/index.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Auth/Login.jsx";
 import Signup from "./components/Auth/Signup.jsx";
+import Sidebar from "./components/MyAccounts/sidebar.jsx";
+import Myaccount from "./components/MyAccounts/index.jsx";
 
 const App = () => {
   const [cartVisible, setCartVisible] = useState(false);
@@ -24,7 +26,9 @@ const App = () => {
   };
 
   const hideHeaderFooter =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/myaccount";
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -39,6 +43,7 @@ const App = () => {
         <Route path="/Shop" element={<ShopPages />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/myaccount" element={<Myaccount />} />
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </div>
