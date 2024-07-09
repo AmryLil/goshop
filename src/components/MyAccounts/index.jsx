@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Sidebar from "./sidebar";
 import Profile from "./profile";
+import AddressList from "./alamat";
+import { Route, Routes } from "react-router-dom";
+import ActivateSeller from "./activate_seller";
 
 const Myaccount = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,7 +38,14 @@ const Myaccount = () => {
       </button>
       <Sidebar isSidebarOpen={isSidebarOpen} />
       <main className="p-4 sm:ml-64 bg-gray-100 relative flex justify-center items-center h-[100vh]">
-        <Profile />
+        {/* <Profile /> */}
+        {/* <AddressList /> */}
+        {/* <ActivateSeller /> */}
+        <Routes>
+          <Route path="" element={<Profile />} />
+          <Route path="alamat" element={<AddressList />} />
+          <Route path="/seller" element={<ActivateSeller />} />
+        </Routes>
       </main>
     </div>
   );

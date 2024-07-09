@@ -81,6 +81,7 @@ const MainContent = () => {
                       >
                         <div className="w-full min-h-60 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-52 lg:aspect-none">
                           <img
+                            loading="lazy"
                             src={product.thumbnail}
                             alt={product.title}
                             className="w-full h-full object-center object-cover lg:w-full lg:h-full"
@@ -142,6 +143,7 @@ const MainContent = () => {
                     >
                       <div className="w-full min-h-60 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-52 lg:aspect-none">
                         <img
+                          loading="lazy"
                           src={product.urls.small}
                           alt={product.alt_description}
                           className="w-full h-full object-center object-cover lg:w-full lg:h-full"

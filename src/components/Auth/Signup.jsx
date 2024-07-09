@@ -11,7 +11,7 @@ const Signup = () => {
     <div className="w-screen h-full flex justify-center items-center overflow-hidden">
       <div className="container w-full flex flex-row shadow-xl rounded-md h-screen relative">
         <motion.div
-          className="w-1/2 bg-gradient-to-r from-red-500 to-red-400 shadow-md text-purple-900 flex flex-col  px-5 py-5 absolute h-full  z-10 transition-all ease-out "
+          className="w-1/2 bg-gradient-to-r from-red-900 to-red-800 shadow-md text-purple-900 flex flex-col  px-5 py-5 absolute h-full  z-10 transition-all ease-out "
           initial={{ x: 640, opacity: 0.5 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -127,7 +127,7 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="bg-gradient-to-r from-red-500 to-red-400 py-2 rounded-md shadow-md hover:outline-2 mt-2 mb-1 hover:border text-lg font-semibold text-slate-100"
+                className="bg-gradient-to-r from-red-900 to-red-800 py-2 rounded-md shadow-md hover:outline-2 mt-2 mb-1 hover:border text-lg font-semibold text-slate-100"
               >
                 Create
               </button>

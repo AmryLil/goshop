@@ -44,7 +44,7 @@ const Header = ({ cartVisible, toggleCartVisibility }) => {
                 />
                 <button
                   type="submit"
-                  className="bg-red-500 text-white px-4 py-2.5 rounded-md"
+                  className="bg-red-800 text-white px-4 py-2.5 rounded-md"
                 >
                   <FaSearch className="text-lg md:text-xl" />
                 </button>
@@ -54,25 +54,25 @@ const Header = ({ cartVisible, toggleCartVisibility }) => {
           <div className="hidden md:ml-6 md:flex md:space-x-8">
             <Link
               to={"/"}
-              className="border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="border-red-800 text-gray-900 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
             >
               Home
             </Link>
             <Link
               to={"/shop"}
-              className="border-transparent text-gray-500 hover:border-red-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="border-transparent text-gray-500 hover:border-red-800 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
             >
               Shop
             </Link>
             <Link
               to="/myaccount"
-              className="border-transparent text-gray-500 hover:border-red-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="border-transparent text-gray-500 hover:border-red-800 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
             >
               My Account
             </Link>
             <Link
               to={"/login"}
-              className="border-transparent text-gray-500 hover:border-red-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="border-transparent text-gray-500 hover:border-red-800 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
             >
               Login
             </Link>
@@ -97,7 +97,7 @@ const Header = ({ cartVisible, toggleCartVisibility }) => {
               initial={{ x: "100%" }}
               animate={{ x: "0%" }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.2 }}
               className="fixed inset-y-0 right-0 z-50 w-2/5 bg-white shadow-lg"
             >
               <Cart onClick={toggleCartVisibility} />
@@ -107,7 +107,7 @@ const Header = ({ cartVisible, toggleCartVisibility }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.6 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className="fixed inset-0 bg-black opacity-60 z-40"
                 onClick={() => {
                   toggleCartVisibility();

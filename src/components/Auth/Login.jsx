@@ -17,7 +17,7 @@ const Login = () => {
           <Link to={"/"}>
             <IoArrowBackCircle
               size={50}
-              className="absolute text-red-500 self-start self cursor-pointer top-5 left-4 z-50"
+              className="absolute text-red-800 self-start self cursor-pointer top-5 left-4 z-50"
             />
           </Link>
           <div className="flex justify-center items-center flex-col mt-8">
@@ -111,14 +111,14 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="bg-gradient-to-r from-red-400 to-red-500 py-2 rounded-md shadow-md hover:outline-2 mt-2 mb-2 hover:border text-lg font-semibold text-slate-100 text-center"
+              className="bg-gradient-to-r from-red-800 to-red-900 py-2 rounded-md shadow-md hover:outline-2 mt-2 mb-2 hover:border text-lg font-semibold text-slate-100 text-center"
             >
               Sign in
             </button>
           </form>
         </motion.div>
         <motion.div
-          className="w-1/2 h-full bg-gradient-to-r from-red-400 to-red-500 shadow-md text-purple-900 flex flex-col p-5 absolute transition-all ease-out"
+          className="w-1/2 h-full bg-gradient-to-r from-red-800 to-red-900 shadow-md text-purple-900 flex flex-col p-5 absolute transition-all ease-out"
           id="login"
           initial={{ x: 0, opacity: 0.5 }}
           animate={{ x: 640, opacity: 1 }}

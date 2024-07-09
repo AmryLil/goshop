@@ -28,7 +28,7 @@ const App = () => {
   const hideHeaderFooter =
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
-    location.pathname === "/myaccount";
+    location.pathname.startsWith("/myaccount");
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -43,7 +43,7 @@ const App = () => {
         <Route path="/Shop" element={<ShopPages />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/myaccount" element={<Myaccount />} />
+        <Route path="/myaccount/*" element={<Myaccount />} />
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </div>

@@ -4,7 +4,7 @@ const Profile = () => {
   return (
     <>
       <h1 className="text-6xl font-bold  ml-2 absolute top-3.5 start-7 text-red-800">
-        My Profile
+        Profile Saya
       </h1>
       <div className="p-4 bg-white shadow-sm rounded-md w-full flex h-[85vh] justify-center items-center">
         <div className=" w-1/2 h-full flex flex-col items-start justify-center py-16 pt-24 ">
