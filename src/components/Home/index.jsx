@@ -15,7 +15,6 @@ const MainContent = () => {
         );
         const data = await response.json();
 
-        // Set the first 8 products
         if (data.products.length === 0) {
           setError("No products found in the specified category.");
         } else {
@@ -54,20 +53,20 @@ const MainContent = () => {
       <Header />
       <main className="pt-8 flex flex-col gap-5">
         <div className="bg-red-50 p-4">
-          <div className="container mx-auto flex">
-            <div className="mr-4">
+          <div className="container mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-4">
+            <div className="w-full lg:w-1/2 mb-4 lg:mb-0 hidden md:block">
               <img
                 src="https://via.placeholder.com/400x550?text=Promo+Banner"
                 alt="Promo Banner"
-                className="w-full"
+                className="w-full object-cover"
               />
             </div>
-            <div className="flex flex-col">
-              <div className="">
+            <div className="flex flex-col w-full lg:w-1/2">
+              <div>
                 <h2 className="text-2xl font-bold text-green-700">
                   GoShop Super Brand Day
                 </h2>
-                <p>Discont s/d 60% | Bundle Hemat s/d 250RB</p>
+                <p>Discounts up to 60% | Bundle Savings up to 250RB</p>
               </div>
               <div className="container mx-auto py-4">
                 {error ? (
@@ -79,7 +78,7 @@ const MainContent = () => {
                         key={product.id}
                         className="group relative shadow-md transition-all duration-300 hover:scale-105 cursor-pointer"
                       >
-                        <div className="w-full min-h-60 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-52 lg:aspect-none">
+                        <div className="w-full min-h-60 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-52 lg:aspect-none ">
                           <img
                             loading="lazy"
                             src={product.thumbnail}
@@ -93,7 +92,7 @@ const MainContent = () => {
                               {product.title}
                             </h3>
                             <p className="mt-1 text-sm text-gray-500">
-                              Diskon s/d {product.discountPercentage}%
+                              Discount up to {product.discountPercentage}%
                             </p>
                           </div>
                           <p className="text-sm font-medium text-gray-900 pl-1">
@@ -112,21 +111,23 @@ const MainContent = () => {
         <div className="p-4">
           <div className="container mx-auto">
             <div className="relative w-full h-[520px] ">
-              <div className="flex w-full h-full justify-center">
+              <div className="flex w-full h-full justify-center items-center flex-col lg:flex-row">
                 <img
                   src="/img/sweater1.jpg"
                   alt=""
-                  className="w-1/2 object-cover"
+                  className="w-full lg:w-1/2 object-cover mb-4 lg:mb-0"
                 />
                 <img
                   src="/img/sweater2.jpg"
                   alt=""
-                  className="w-1/2 object-bottom filter"
+                  className="w-full lg:w-1/2 object-cover"
                 />
               </div>
-              <div className="absolute top-20 text-red-800 right-28 flex flex-col justify-center items-center">
-                <h1 className="font-semibold text-6xl">Sweater Brand</h1>
-                <h2 className="text-2xl text-slate-900 bg-slate-100 w-max px-2 py-0.5 rounded-lg mt-1">
+              <div className="absolute top-10 lg:top-20 text-red-800 right-8 lg:right-28 flex flex-col justify-center items-center text-center">
+                <h1 className="font-semibold text-3xl lg:text-6xl">
+                  Sweater Brand
+                </h1>
+                <h2 className="text-xl lg:text-2xl text-slate-900 bg-slate-100 w-max px-2 py-0.5 rounded-lg mt-1">
                   New Release 2024
                 </h2>
               </div>

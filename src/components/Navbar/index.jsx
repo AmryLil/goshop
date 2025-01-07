@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
-import { motion, AnimatePresence } from "framer-motion";
-import Cart from "./cart";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import DesktopMenu from "./desktopMenu";
+import { MobileMenu } from "./mobileMenu";
 
-const Header = ({ cartVisible, toggleCartVisibility }) => {
-  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
+const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const toggleOverlay = () => {
-    setIsOverlayVisible(!isOverlayVisible);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -23,18 +19,26 @@ const Header = ({ cartVisible, toggleCartVisibility }) => {
     console.log("Search query:", searchQuery);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <header className="bg-white shadow fixed z-50 w-full">
-      <div className="container mx-auto px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between">
-          <div className="flex">
-            <div className="flex-shrink-0 flex-row flex gap-x-10">
+    <>
+      <header className="bg-white shadow fixed z-50 w-full">
+        <div className="container mx-auto px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            {/* Logo and Search Form */}
+            <div className="flex items-center">
               <img
-                className="h-16 w-[80px]"
+                className="md:h-16 md:w-[80px] h-9 w-10"
                 src="./img/logo2.png"
                 alt="Workflow"
               />
-              <form onSubmit={handleSearchSubmit} className="flex items-center">
+              <form
+                onSubmit={handleSearchSubmit}
+                className="hidden md:flex items-center ml-4"
+              >
                 <input
                   type="text"
                   className="border border-gray-300 rounded-md py-2 px-4 w-[400px] mr-2"
@@ -50,75 +54,70 @@ const Header = ({ cartVisible, toggleCartVisibility }) => {
                 </button>
               </form>
             </div>
+
+            {/* Desktop Menu Links */}
+            <DesktopMenu ClassName={"hidden md:flex"} />
+
+            {/* Mobile Menu Toggle Button */}
+            <MobileMenu />
+            <div className="flex items-center md:hidden">
+              <button onClick={toggleMenu} className="text-gray-900">
+                {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            </div>
           </div>
-          <div className="hidden md:ml-6 md:flex md:space-x-8">
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          className={`fixed inset-x-0 bottom-0 bg-white shadow-lg transition-transform transform ${
+            isMenuOpen ? "translate-y-0" : "translate-y-full"
+          } z-40`}
+        >
+          <div className="flex flex-col p-4 space-y-4">
             <Link
               to={"/"}
-              className="border-red-800 text-gray-900 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="text-gray-900 text-base font-medium"
+              onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               to={"/shop"}
-              className="border-transparent text-gray-500 hover:border-red-800 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="text-gray-500 hover:text-gray-700 text-base font-medium"
+              onClick={() => setIsMenuOpen(false)}
             >
               Shop
             </Link>
             <Link
               to="/myaccount"
-              className="border-transparent text-gray-500 hover:border-red-800 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="text-gray-500 hover:text-gray-700 text-base font-medium"
+              onClick={() => setIsMenuOpen(false)}
             >
               My Account
             </Link>
             <Link
               to={"/login"}
-              className="border-transparent text-gray-500 hover:border-red-800 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-4 text-base font-medium"
+              className="text-gray-500 hover:text-gray-700 text-base font-medium"
+              onClick={() => setIsMenuOpen(false)}
             >
               Login
             </Link>
           </div>
-          <div className="ml-6 flex items-center">
-            <button
-              onClick={() => {
-                toggleCartVisibility();
-                toggleOverlay();
-              }}
-              className="bg-white p-1 rounded-full hover:text-gray-500"
-            >
-              <FaCartShopping size={25} />
-            </button>
-          </div>
         </div>
+      </header>
+
+      <div className="fixed bottom-4 right-4  z-50">
+        <Link to={"/cart"}>
+          <button className="bg-white p-2 rounded-full shadow-lg hover:text-red-800 md:hidden">
+            <FaCartShopping size={27} />
+            <div className="rounded-full bg-red-800 p-0.5 px-1.5 absolute top-0 -right-1">
+              <h1 className="text-white text-[8px] font-bold">1</h1>
+            </div>
+          </button>
+        </Link>
       </div>
-      <AnimatePresence>
-        {cartVisible && (
-          <>
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: "0%" }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-y-0 right-0 z-50 w-2/5 bg-white shadow-lg"
-            >
-              <Cart onClick={toggleCartVisibility} />
-            </motion.div>
-            {isOverlayVisible && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 bg-black opacity-60 z-40"
-                onClick={() => {
-                  toggleCartVisibility();
-                  toggleOverlay();
-                }}
-              ></motion.div>
-            )}
-          </>
-        )}
-      </AnimatePresence>
-    </header>
+    </>
   );
 };
 

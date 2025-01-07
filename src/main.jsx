@@ -12,40 +12,44 @@ import MainContent from "./components/Home/index.jsx";
 import ShopPages from "./components/Shop/index.jsx";
 import Header from "./components/Navbar/index.jsx";
 import Footer from "./components/Footer.jsx";
-import Login from "./components/Auth/Login.jsx";
-import Signup from "./components/Auth/Signup.jsx";
 import Sidebar from "./components/MyAccounts/sidebar.jsx";
 import Myaccount from "./components/MyAccounts/index.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Signup.jsx";
+import Home from "./pages/Home.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
+import { CartProvider } from "./context/CartContext.jsx";
+import ShoppingCart from "./pages/Cart.jsx";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import CheckoutPage from "./pages/Checkout.jsx";
+import OrderHistory from "./pages/Orders.jsx";
 
 const App = () => {
-  const [cartVisible, setCartVisible] = useState(false);
   const location = useLocation();
-
-  const toggleCartVisibility = () => {
-    setCartVisible(!cartVisible);
-  };
 
   const hideHeaderFooter =
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
+    location.pathname === "/cart" ||
+    location.pathname.startsWith("/checkout") ||
     location.pathname.startsWith("/myaccount");
 
   return (
     <div className="flex flex-col min-h-screen">
-      {!hideHeaderFooter && (
-        <Header
-          cartVisible={cartVisible}
-          toggleCartVisibility={toggleCartVisibility}
-        />
-      )}
-      <Routes>
-        <Route path="/" element={<MainContent />} />
-        <Route path="/Shop" element={<ShopPages />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/myaccount/*" element={<Myaccount />} />
-      </Routes>
-      {!hideHeaderFooter && <Footer />}
+      <CartProvider>
+        {!hideHeaderFooter && <Header />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<ShopPages />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/myaccount/*" element={<Myaccount />} />
+          <Route path="/product/:id*" element={<ProductPage />} />
+        </Routes>
+        {!hideHeaderFooter && <Footer />}
+      </CartProvider>
     </div>
   );
 };

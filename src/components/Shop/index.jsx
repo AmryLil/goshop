@@ -3,13 +3,14 @@ import axios from "axios";
 
 import TopUp from "./topup";
 import Banner from "./banner";
+import { Link } from "react-router-dom";
 
 const ShopPages = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://dummyjson.com/products")
+      .get("https://dummyjson.com/products?limit=200")
       .then((response) => {
         setProducts(response.data.products);
       })
@@ -25,18 +26,19 @@ const ShopPages = () => {
           <Banner />
           <TopUp />
         </div>
-        <div className="px-10 relative">
+        <div className="md:px-10 px-4 relative">
           <div id="card" className="relative overflow-x-hidden ">
             <div className="max-w-full container">
               <div className="">
                 <h1 className="text-2xl font-bold mb-2">Product Recomended</h1>
-                <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 xl:gap-x-8 -z-20">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 -z-20">
                   {products.map((product) => (
-                    <div
+                    <Link
+                      to={`/product/${product.id}`}
                       key={product.id}
                       className="group relative shadow-md transition-all duration-300 hover:scale-105 cursor-pointer"
                     >
-                      <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                      <div className="w-full md:min-h-60 min-h-32 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                         <img
                           src={product.thumbnail}
                           alt={product.title}
@@ -62,7 +64,7 @@ const ShopPages = () => {
                           ${product.price}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
